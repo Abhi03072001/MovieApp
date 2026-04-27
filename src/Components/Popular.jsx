@@ -46,7 +46,7 @@ const Popular = () => {
   return popular.length > 0 ? (
     <div className="flex">
       <SideNav show={showSideNav} setShow={setShowSideNav} />
-      <div className="p-6 w-full lg:w-[80%] min-h-screen bg-zinc-900 text-white lg:ml-[20%]">
+      <div className="p-6 w-full lg:w-[80%] min-h-screen bg-zinc-900 text-white">
         {/* Header */}
         <div className="w-full flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
           <h1 className="text-3xl font-bold text-zinc-300 flex items-center gap-3">

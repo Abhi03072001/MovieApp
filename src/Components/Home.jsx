@@ -51,7 +51,7 @@ const Home = () => {
   return  wallpaper && trending ? (
     <>
     <SideNav show={showSideNav} setShow={setShowSideNav} />
-    <div className='w-full lg:w-[80%] h-full overflow-auto overflow-x-hidden lg:ml-[20%]'>
+    <div className='w-full lg:w-[80%] h-full overflow-auto overflow-x-hidden'>
       <TopNav setShowSideNav={setShowSideNav} />
       <Header data={wallpaper} />
       <div className="mb-5 flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 sm:px-0">
