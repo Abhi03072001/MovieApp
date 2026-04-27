@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from '../../Utils/Axios';
 import noImage from '/noImage.jpg';
 
-const TopNav = () => {
+const TopNav = ({ setShowSideNav }) => {
   const [query, setquery] = useState('');
   const [searches, setsearches] = useState([]);
 
@@ -21,24 +21,36 @@ const TopNav = () => {
   }, [query]);
 
   return (
-    <div className="w-full h-[14vh] flex items-center relative bg-zinc-900 px-6">
-      {/* <i className="ri-search-line text-2xl text-zinc-400"></i> */}
-      <input
-        onChange={(e) => setquery(e.target.value)}
-        value={query}
-        type="text"
-        className="w-[50%] text-zinc-200 mx-4 p-4 outline-none border-none bg-zinc-800 rounded-lg"
-        placeholder="Search Anything"
-      />
+    <div className="w-full flex flex-wrap items-center gap-3 relative bg-zinc-900 px-4 py-3 sm:px-6">
+      <button
+        onClick={() => setShowSideNav && setShowSideNav(prev => !prev)}
+        className="lg:hidden text-zinc-400 hover:text-white flex-shrink-0"
+      >
+        <i className="ri-menu-line text-2xl"></i>
+      </button>
+
+      <div className="flex-1 min-w-0">
+        <input
+          onChange={(e) => setquery(e.target.value)}
+          value={query}
+          type="text"
+          className="w-full text-zinc-200 p-4 outline-none border-none bg-zinc-800 rounded-lg"
+          placeholder="Search Anything"
+        />
+      </div>
+
       {query.length > 0 && (
-        <i
+        <button
           onClick={() => setquery('')}
-          className="ri-close-fill text-3xl text-zinc-400 cursor-pointer"
-        ></i>
+          className="text-zinc-400 hover:text-white flex-shrink-0"
+          aria-label="Clear search"
+        >
+          <i className="ri-close-fill text-3xl"></i>
+        </button>
       )}
 
       {query.length > 0 && (
-        <div className="w-[50%] bg-zinc-800 max-h-[50vh] absolute top-[100%] left-[6%] overflow-auto z-[100] rounded-lg shadow-lg">
+        <div className="w-full sm:w-[50%] bg-zinc-800 max-h-[50vh] absolute top-full left-0 sm:left-[6%] overflow-auto z-[100] rounded-lg shadow-lg mt-2">
           {searches.map((s, i) => (
             <Link
               to={`/${s.media_type}/details/${s.id}`}
@@ -54,7 +66,7 @@ const TopNav = () => {
                 }
                 alt={s.name || s.title}
               />
-              <span>{s.name || s.title || s.original_name || s.original_title}</span>
+              <span className="truncate">{s.name || s.title || s.original_name || s.original_title}</span>
             </Link>
           ))}
         </div>

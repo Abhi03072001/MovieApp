@@ -13,6 +13,7 @@ const Home = () => {
     const [wallpaper, setwallpaper] = useState(null);
     const [trending, settrending] = useState(null);
     const [category, setcategory] = useState("all");
+    const [showSideNav, setShowSideNav] = useState(false);
 
      // Get Header Wallpaper
 
@@ -49,12 +50,12 @@ const Home = () => {
 
   return  wallpaper && trending ? (
     <>
-    <SideNav />
-    <div className='w-[80%] h-full overflow-auto overflow-x-hidden'>
-      <TopNav />
+    <SideNav show={showSideNav} setShow={setShowSideNav} />
+    <div className='w-full lg:w-[80%] h-full overflow-auto overflow-x-hidden lg:ml-[20%]'>
+      <TopNav setShowSideNav={setShowSideNav} />
       <Header data={wallpaper} />
-      <div className="mb-5 flex justify-between">
-        <h1 className="text-3xl font-semibold text-zinc-400">Trending</h1>
+      <div className="mb-5 flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 sm:px-0">
+        <h1 className="text-2xl sm:text-3xl font-semibold text-zinc-400 mb-4 sm:mb-0">Trending</h1>
         <Dropdown title="Filter" options={["tv", "movie", "all"]} func={(e)=>{setcategory(e.target.value)}} />
       </div> 
       <HorizonatalCards data={trending} /> 
